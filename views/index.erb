@@ -17,23 +17,27 @@
         var herokudata = data
         var labels = [];
         var data = [];
+        var data2 = [];
 
         for (i = 0; i < herokudata.values.length; i++) {
           var pairs = herokudata.values[i];
           labels[i] = pairs[0];
           data[i] = pairs[1];
+          if (pairs[2] = true){
+            data2[i] = pairs[2];
+          }
         }
 
-        doWork(labels, data);
+        doWork(labels, data, data2);
       })
 
-      function doWork (labels, data) {
+      function doWork (labels, data, data2) {
         var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
         var lineChartData = {
           labels : labels,
           datasets : [
             {
-            label: "My First dataset",
+            label: "First Dataset",
             fillColor : "rgba(160, 140, 204, 0.3)",
             strokeColor : "#a18dcc",
             pointColor : "rgba(220,220,220,1)",
@@ -41,7 +45,18 @@
             pointHighlightFill : "#fff",
             pointHighlightStroke : "rgba(220,220,220,1)",
             data: data
+          },
+          {
+            label: "Second Dataset",
+            fillColor : "rgba(160, 140, 204, 0.5)",
+            strokeColor : "#a18dcc",
+            pointColor : "rgba(220,220,220,1)",
+            pointStrokeColor : "#fff",
+            pointHighlightFill : "#fff",
+            pointHighlightStroke : "rgba(220,220,220,1)",
+            data: data2
           }
+
           ]
         }
         var ctx = document.getElementById("canvas").getContext("2d");
