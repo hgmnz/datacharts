@@ -1,18 +1,20 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Datacharts</title>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-  </head>
-  <body>
-    <a
-      href="https://dataclips-next.heroku.com/<%= params[:dataclip] %>">Source</a>
-    <canvas id="canvas" height="450" width="600"></canvas>
+chrome.extension.sendMessage({}, function(response) {
+  var readyStateCheckInterval = setInterval(function() {
+    if (document.readyState === "complete") {
+      clearInterval(readyStateCheckInterval);
 
-    <script>
+      var dataclip_id = $('.settings-icon').attr('href').replace(/\//g,'').replace(/settings/g, '');
+      console.log(dataclip_id);
+      $('.page').after('<div class="page"><div class="row"><div class="col-xs-12"><canvas id="canvas" height="450" width="600"></canvas></div></div></div>' );
 
-      var xhr = $.get("https://dataclips.heroku.com/<%= params[:dataclip] %>.json");
+
+
+
+
+
+
+
+ var xhr = $.get("https://dataclips.heroku.com/" + dataclip_id + ".json");
       xhr.done(function(data) {
         var herokudata = data
         var labels = [];
@@ -64,6 +66,17 @@
           responsive: true
         });
       }
-    </script>
-  </body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+    }
+  }, 10);
+});
