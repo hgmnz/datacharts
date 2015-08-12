@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://dataclips-next.heroku.com/*"
+        "https://dataclips.heroku.com/*"
       ],
       "js": [
         "js/jquery/jquery.js", "js/chartjs/chart.js", "src/inject/inject.js"
